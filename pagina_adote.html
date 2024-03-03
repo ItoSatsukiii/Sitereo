@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adote um Pet - Galeria</title>
+    <style>
+        /* Estilos ... */
+        body {
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        header {
+            background-image: url("gatocacho.jpg");
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            padding: 50px;
+            width: 100%;
+        }
+
+        header h1 {
+            color: black;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .pet-container {
+            position: relative;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .pet-container:hover {
+            transform: scale(1.05);
+        }
+
+        .pet-container img {
+            max-width: 100%;
+            height: auto;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .pet-description {
+            padding: 10px;
+        }
+
+        .qr-code {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .info-tab {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            display: none;
+        }
+
+        .pet-container:hover .info-tab {
+            display: block;
+        }
+
+        .adopt-button {
+            cursor: pointer;
+            background-color: #4caf50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .hover-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            display: none;
+        }
+
+        .pet-container:hover .hover-info {
+            display: block;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+            margin-top: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Adote um Pet - Galeria</h1>
+    </header>
+
+    <div class="gallery">
+        <!-- Animais Embaralhados -->
+        <div class="pet-container">
+            <img src="GATO.webp" alt="Yuri">
+            <div class="pet-description">
+                <h2>Yuri</h2>
+                <div class="info-tab">
+                    <p>Idade: 3 meses</p>
+                    <p>Dono: Mariana Santos</p>
+                    <p>Cidade: São Paulo</p>
+                    <p>Estado: SP</p>
+                    <p>Telefone: (11) 98765-4321</p>
+                </div>
+                <div class="hover-info">
+                    <p>Nome: Yuri</p>
+                    <p>Idade: 3 meses</p>
+                    <p>Dono: Mariana Santos</p>
+                    <p>Cidade: São Paulo</p>
+                    <p>Estado: SP</p>
+                    <p>Telefone: (11) 98765-4321</p>
+                </div>
+                <button class="adopt-button" onclick="adopt('Yuri')">Adotar</button>
+            </div>
+        </div>
+
+        <!-- Adicione mais blocos .pet-container conforme necessário -->
+        
+        <!-- Exemplo para Cachorro 1 -->
+        <div class="pet-container">
+            <img src="CHORRO.webp" alt="Spike">
+            <div class="pet-description">
+                <h2>Spike</h2>
+                <div class="info-tab">
+                    <p>Idade: 1 ano</p>
+                    <p>Dono: Joana Oliveira</p>
+                    <p>Cidade: Rio de Janeiro</p>
+                    <p>Estado: RJ</p>
+                    <p>Telefone: (21) 98765-4321</p>
+                </div>
+                <div class="hover-info">
+                    <p>Nome: Spike</p>
+                    <p>Idade: 1 ano</p>
+                    <p>Dono: Joana Oliveira</p>
+                    <p>Cidade: Rio de Janeiro</p>
+                    <p>Estado: RJ</p>
+                    <p>Telefone: (21) 98765-4321</p>
+                </div>
+                <button class="adopt-button" onclick="adopt('Spike')">Adotar</button>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Comunidade Pet Lovers</p>
+    </footer>
+
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script>
+        // Função para criar QR Code ao adotar
+        function adopt(petName) {
+            const qrCodeElement = document.getElementById(`qr-code-${petName}`);
+
+            // Remove o QR code anterior
+            qrCodeElement.innerHTML = '';
+
+            // Cria um novo QR code
+            const qrcode = new QRCode(qrCodeElement, {
+                text: `Adoção de ${petName}`,
+                width: 128,
+                height: 128
+            });
+
+            // Exibe o QR code
+            qrCodeElement.style.display = 'block';
+        }
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

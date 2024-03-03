@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Doação</title>
+    <style>
+        /* Estilos ... */
+
+        body {
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        header {
+            background-image: url("gatocacho.jpg");
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            padding: 50px;
+            width: 100%;
+            color: black;
+        }
+
+        main {
+            text-align: center;
+            padding: 20px;
+            flex-grow: 1;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .image-container {
+            margin-bottom: 20px;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            max-height: 200px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: transform 0.3s;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .image-container img:hover {
+            transform: scale(1.1);
+        }
+
+        #donationForm {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #donationForm input,
+        #donationForm select {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        #animalImagePreview {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            display: none;
+            margin: 0 auto;
+        }
+
+        #donateButton {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #donationMessage {
+            margin-top: 10px;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        #errorMessages {
+            color: red;
+            margin-top: 5px;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Pet Lovers</h1>
+    </header>
+
+    <main>
+        <form id="donationForm">
+            <div>
+                <label for="ownerName">Nome do Dono:</label>
+                <input type="text" id="ownerName" name="ownerName" required>
+                <label for="animalName">Nome do Animal:</label>
+                <input type="text" id="animalName" name="animalName" required>
+                <label for="animalAge">Idade do Animal:</label>
+                <input type="number" id="animalAge" name="animalAge" required>
+                <label for="city">Cidade:</label>
+                <input type="text" id="city" name="city" required>
+                <label for="state">Estado:</label>
+                <input type="text" id="state" name="state" required>
+                <label for="phoneNumber">Telefone:</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" required>
+                <div id="errorMessages" class="error-messages"></div>
+            </div>
+
+            <div class="image-container">
+                <label for="animalImage">Foto do Animal:</label>
+                <input type="file" id="animalImage" name="animalImage" accept="image/*" onchange="previewImage()">
+                <img id="animalImagePreview" alt="Preview da Imagem" style="display: none;">
+            </div>
+
+            <button id="donateButton" type="button" onclick="donate()">Doar</button>
+            <div id="donationMessage"></div>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Comunidade Pet Lovers</p>
+    </footer>
+
+    <script>
+        // Função para visualizar a imagem selecionada
+        function previewImage() {
+            const input = document.getElementById('animalImage');
+            const preview = document.getElementById('animalImagePreview');
+
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        // Função para doar (pode ser personalizada conforme a lógica desejada)
+        function donate() {
+            // Lógica de processamento do formulário
+
+            // Verifica se todos os campos obrigatórios foram preenchidos
+            const formElements = document.getElementById('donationForm').elements;
+            const errorMessages = document.getElementById('errorMessages');
+            const isFormValid = [...formElements].every((element) => {
+                return element.checkValidity();
+            });
+
+            // Exibe mensagens de erro se algum campo não estiver preenchido corretamente
+            if (!isFormValid) {
+                errorMessages.innerHTML = '<p>Por favor, preencha todos os campos obrigatórios.</p>';
+                return;
+            }
+
+            // Limpa as mensagens de erro
+            errorMessages.innerHTML = '';
+
+            // Exibe mensagem de doação concluída
+            const donationMessage = document.getElementById('donationMessage');
+            donationMessage.innerHTML = "<p>Doação concluída! Obrigado pelo seu apoio.</p>";
+
+            // Remove a imagem e reinicia o formulário após a doação
+            document.getElementById('animalImagePreview').style.display = 'none';
+            document.getElementById('donationForm').reset();
+        }
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

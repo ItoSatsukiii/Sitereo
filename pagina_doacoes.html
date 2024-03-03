@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valores de Doações</title>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <style>
+        /* Estilos ... */
+        body {
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        header {
+            background-image: url("gatocacho.jpg");
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            padding: 50px;
+            width: 100%;
+        }
+
+        header h1 {
+            color: black;
+        }
+
+        main {
+            text-align: center;
+            padding: 20px;
+            flex-grow: 1;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .donation-amount {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+        }
+
+        .qr-code-container {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #qrcode canvas {
+            width: 100% !important;
+            height: auto !important;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Valores de Doações</h1>
+    </header>
+
+    <main>
+        <div class="donation-amount">
+            <p>Ajude-nos a arrecadar fundos para cuidar dos animais. Sua doação faz a diferença na vida deles.</p>
+            <p>Selecione o valor da sua doação:</p>
+            <select id="donationSelect">
+                <option value="10">R$ 10,00</option>
+                <option value="20">R$ 20,00</option>
+                <option value="50">R$ 50,00</option>
+                <!-- Adicione mais opções conforme necessário -->
+            </select>
+        </div>
+
+        <div class="qr-code-container">
+            <h3>Escaneie o QR Code para doar:</h3>
+            <div id="qrcode"></div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Comunidade Pet Lovers</p>
+    </footer>
+
+    <script>
+        // Função para atualizar o QR Code com base no valor selecionado
+        function updateQRCode() {
+            const donationSelect = document.getElementById('donationSelect');
+            const selectedValue = donationSelect.value;
+
+            // Remover o QR Code anterior
+            const qrCodeContainer = document.getElementById("qrcode");
+            qrCodeContainer.innerHTML = '';
+
+            // Criar um novo QR Code com base no valor selecionado
+            new QRCode(qrCodeContainer, {
+                text: `https://seusite.com/doacoes?valor=${selectedValue}`,
+                width: 128,
+                height: 128
+            });
+        }
+
+        // Adicione um ouvinte de evento para atualizar o QR Code quando o valor for alterado
+        document.getElementById('donationSelect').addEventListener('change', updateQRCode);
+
+        // Chame a função inicial para exibir o QR Code padrão
+        updateQRCode();
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+

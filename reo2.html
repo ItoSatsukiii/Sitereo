@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Lovers</title>
+    <style>
+        /* Estilos ... */
+
+        body {
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh; /* Ajuste a altura para cobrir toda a tela */
+        }
+
+        header {
+            background-image: url("gatocacho.jpg"); /* Substitua 'cabeçalho.jpg' pelo caminho da sua imagem */
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            padding: 50px;
+            width: 100%;
+        }
+
+        header h1 {
+            color: black; /* Cor do texto em preto */
+        }
+
+        main {
+            text-align: center;
+            padding: 20px;
+            flex-grow: 1;
+            max-width: 600px; /* Defina a largura máxima desejada */
+            margin: 0 auto; /* Centraliza o conteúdo na horizontal */
+        }
+
+        .image-container {
+            margin-bottom: 20px;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            max-height: 200px; /* Defina a altura máxima desejada */
+            cursor: pointer;
+            border-radius: 5px;
+            transition: transform 0.3s;
+        }
+
+        .image-container img:hover {
+            transform: scale(1.1);
+        }
+
+        .description {
+            width: 100%;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+        }
+
+        .donation-counter {
+            margin-top: 20px;
+            font-size: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Pet Lovers</h1>
+    </header>
+
+    <main>
+        <h2>Bem-vindo à Pet Lovers!</h2>
+        <p>O intuito da nossa comunidade é unir pessoas apaixonadas por animais para criar um ambiente amoroso e acolhedor. Juntos, buscamos proporcionar uma vida melhor para os bichinhos indefesos em várias regiões do nosso país, conectando-os a lares amorosos.</p>
+
+        <div class="image-container">
+            <h3>Adote um Pet</h3>
+            <p class="description">Ajude a mudar a vida de um animal indefeso, proporcionando um lar amoroso e acolhedor.</p>
+            <a href="pagina_adote.html" target="_blank">
+                <img src="PATA.png" alt="Adote um Pet" onclick="increaseDonation()">
+            </a>
+        </div>
+
+        <div class="image-container">
+            <h3>Doe um Pet</h3>
+            <p class="description">Contribua para o bem-estar dos animais doando para nossa comunidade. Cada gesto faz a diferença.</p>
+            <a href="pagina_doe.html" target="_blank">
+                <img src="PATADOA.png" alt="Doe um Pet" onclick="increaseDonation()">
+            </a>
+        </div>
+
+        <div class="image-container">
+            <h3>Valores de Doações</h3>
+            <p class="description">Ajude-nos a arrecadar fundos para cuidar dos animais. Sua doação faz a diferença na vida deles.</p>
+            <a href="pagina_doacoes.html" target="_blank" onclick="increaseDonation()">
+                <img src="PATADINERO.png" alt="Valores de Doações">
+            </a>
+        </div>
+    </main>
+
+    <div class="donation-counter">
+        <p>Contador de Doações: R$ <span id="donationAmount">0,00</span></p>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Comunidade Pet Lovers</p>
+    </footer>
+
+    <script>
+        // Função fictícia para gerar um aumento aleatório
+        function getRandomIncrease() {
+            return (Math.random() * 10).toFixed(2); // Aumento aleatório até 10 reais
+        }
+
+        // Simulação de um contador de doações
+        let donationAmount = 0;
+
+        // Atualiza o contador na página
+        function updateDonationAmount() {
+            const donationAmountElement = document.getElementById('donationAmount');
+            donationAmountElement.textContent = donationAmount.toFixed(2);
+        }
+
+        // Função fictícia para aumentar o contador de doações
+        function increaseDonation() {
+            donationAmount += parseFloat(getRandomIncrease());
+            updateDonationAmount();
+        }
+
+        // Função fictícia para aumentar o contador automaticamente
+        function autoIncrease() {
+            setInterval(function () {
+                donationAmount += parseFloat(getRandomIncrease());
+                updateDonationAmount();
+            }, 2000); // Aumenta a cada 2 segundos (ajuste conforme necessário)
+        }
+
+        // Chamada inicial para exibir o contador
+        updateDonationAmount();
+
+        // Chamada para iniciar o aumento automático
+        autoIncrease();
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
